@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kutuphaneotomasyonuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="personel_id" />
+    </Key>
+    <Property Name="personel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personel_ad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_tc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_tel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_kullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="personel_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="kutuphaneotomasyonuEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="personel" EntityType="Self.personel" />
+    <EntitySet Name="kullanicilar" EntityType="kutuphaneotomasyonuModel.kullanicilar" />
+    <EntitySet Name="kaynaklar" EntityType="kutuphaneotomasyonuModel.kaynaklar" />
+    <EntitySet Name="kayitlar" EntityType="kutuphaneotomasyonuModel.kayitlar" />
+    <AssociationSet Name="kayitlar_ibfk_1" Association="kutuphaneotomasyonuModel.kayitlar_ibfk_1">
+      <End Role="kullanicilar" EntitySet="kullanicilar" />
+      <End Role="kayitlar" EntitySet="kayitlar" />
+    </AssociationSet>
+    <AssociationSet Name="kayitlar_ibfk_2" Association="kutuphaneotomasyonuModel.kayitlar_ibfk_2">
+      <End Role="kaynaklar" EntitySet="kaynaklar" />
+      <End Role="kayitlar" EntitySet="kayitlar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="kullanicilar">
+    <Key>
+      <PropertyRef Name="kullanici_id" />
+    </Key>
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullanici_ad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_soyad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_tc" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_mail" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_tel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_ceza" Type="Single" Nullable="false" />
+    <Property Name="kullanici_cinsiyet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kayitlar" Relationship="kutuphaneotomasyonuModel.kayitlar_ibfk_1" FromRole="kullanicilar" ToRole="kayitlar" />
+  </EntityType>
+  <EntityType Name="kaynaklar">
+    <Key>
+      <PropertyRef Name="kaynak_id" />
+    </Key>
+    <Property Name="kaynak_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kaynak_ad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kaynak_yazar" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kaynak_yayinci" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="kaynak_sayfasayisi" Type="Int32" Nullable="false" />
+    <Property Name="kaynak_basimtarihi" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="kayitlar" Relationship="kutuphaneotomasyonuModel.kayitlar_ibfk_2" FromRole="kaynaklar" ToRole="kayitlar" />
+  </EntityType>
+  <EntityType Name="kayitlar">
+    <Key>
+      <PropertyRef Name="kayit_id" />
+    </Key>
+    <Property Name="kayit_id" Type="Int32" Nullable="false" />
+    <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+    <Property Name="kitap_id" Type="Int32" Nullable="false" />
+    <Property Name="alis_tarih" Type="DateTime" Nullable="false" />
+    <Property Name="son_tarih" Type="DateTime" Nullable="false" />
+    <Property Name="durum" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="kullanicilar" Relationship="kutuphaneotomasyonuModel.kayitlar_ibfk_1" FromRole="kayitlar" ToRole="kullanicilar" />
+    <NavigationProperty Name="kaynaklar" Relationship="kutuphaneotomasyonuModel.kayitlar_ibfk_2" FromRole="kayitlar" ToRole="kaynaklar" />
+    <Property Name="ceza" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="kayitlar_ibfk_1">
+    <End Type="kutuphaneotomasyonuModel.kullanicilar" Role="kullanicilar" Multiplicity="1" />
+    <End Type="kutuphaneotomasyonuModel.kayitlar" Role="kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kullanicilar">
+        <PropertyRef Name="kullanici_id" />
+      </Principal>
+      <Dependent Role="kayitlar">
+        <PropertyRef Name="kullanici_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kayitlar_ibfk_2">
+    <End Type="kutuphaneotomasyonuModel.kaynaklar" Role="kaynaklar" Multiplicity="1" />
+    <End Type="kutuphaneotomasyonuModel.kayitlar" Role="kayitlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kaynaklar">
+        <PropertyRef Name="kaynak_id" />
+      </Principal>
+      <Dependent Role="kayitlar">
+        <PropertyRef Name="kitap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

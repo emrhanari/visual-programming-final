@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="kutuphaneotomasyonuModelStoreContainer" CdmEntityContainer="kutuphaneotomasyonuEntities1">
+    <EntitySetMapping Name="personel">
+      <EntityTypeMapping TypeName="kutuphaneotomasyonuModel.personel">
+        <MappingFragment StoreEntitySet="personel">
+          <ScalarProperty Name="personel_id" ColumnName="personel_id" />
+          <ScalarProperty Name="personel_ad" ColumnName="personel_ad" />
+          <ScalarProperty Name="personel_soyad" ColumnName="personel_soyad" />
+          <ScalarProperty Name="personel_tc" ColumnName="personel_tc" />
+          <ScalarProperty Name="personel_tel" ColumnName="personel_tel" />
+          <ScalarProperty Name="personel_mail" ColumnName="personel_mail" />
+          <ScalarProperty Name="personel_kullaniciAd" ColumnName="personel_kullaniciAd" />
+          <ScalarProperty Name="personel_sifre" ColumnName="personel_sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicilar">
+      <EntityTypeMapping TypeName="kutuphaneotomasyonuModel.kullanicilar">
+        <MappingFragment StoreEntitySet="kullanicilar">
+          <ScalarProperty Name="kullanici_tc" ColumnName="kullanici_tc" />
+          <ScalarProperty Name="kullanici_cinsiyet" ColumnName="kullanici_cinsiyet" />
+          <ScalarProperty Name="kullanici_ceza" ColumnName="kullanici_ceza" />
+          <ScalarProperty Name="kullanici_tel" ColumnName="kullanici_tel" />
+          <ScalarProperty Name="kullanici_mail" ColumnName="kullanici_mail" />
+          <ScalarProperty Name="kullanici_soyad" ColumnName="kullanici_soyad" />
+          <ScalarProperty Name="kullanici_ad" ColumnName="kullanici_ad" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kaynaklar">
+      <EntityTypeMapping TypeName="kutuphaneotomasyonuModel.kaynaklar">
+        <MappingFragment StoreEntitySet="kaynaklar">
+          <ScalarProperty Name="kaynak_basimtarihi" ColumnName="kaynak_basimtarihi" />
+          <ScalarProperty Name="kaynak_sayfasayisi" ColumnName="kaynak_sayfasayisi" />
+          <ScalarProperty Name="kaynak_yayinci" ColumnName="kaynak_yayinci" />
+          <ScalarProperty Name="kaynak_yazar" ColumnName="kaynak_yazar" />
+          <ScalarProperty Name="kaynak_ad" ColumnName="kaynak_ad" />
+          <ScalarProperty Name="kaynak_id" ColumnName="kaynak_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kayitlar">
+      <EntityTypeMapping TypeName="kutuphaneotomasyonuModel.kayitlar">
+        <MappingFragment StoreEntitySet="kayitlar">
+          <ScalarProperty Name="ceza" ColumnName="ceza" />
+          <ScalarProperty Name="durum" ColumnName="durum" />
+          <ScalarProperty Name="son_tarih" ColumnName="son_tarih" />
+          <ScalarProperty Name="alis_tarih" ColumnName="alis_tarih" />
+          <ScalarProperty Name="kitap_id" ColumnName="kitap_id" />
+          <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+          <ScalarProperty Name="kayit_id" ColumnName="kayit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
